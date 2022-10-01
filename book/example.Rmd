@@ -1,0 +1,17 @@
+<!-- book/example.Rmd -->
+<!-- Example extracted from https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf (p.12-13)-->
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "../")
+```
+
+```{r}
+library(kableExtra)
+
+mpg_list <- split(mtcars$mpg, mtcars$cyl)
+inline_plot <- data.frame(cyl = c(4, 6, 8), mpg_box = "", mpg_hist = "",
+    mpg_line1 = "", mpg_line2 = "", mpg_points1 = "", mpg_points2 = "", mpg_poly = "")
+inline_plot %>% kbl(booktabs = TRUE) %>% kable_paper(full_width = FALSE) %>%
+    column_spec(3, image = spec_hist(mpg_list))
+```
+
